@@ -3,14 +3,32 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Hello World!</title>
-  <link rel="stylesheet" type="text/css" href="../styles/photon/css/photon.css" />
+  <title>YAMDE</title>
+  <!--<link rel="stylesheet" type="text/css" href="../styles/photon/css/photon.css" />--> 
+  <link rel="stylesheet" type="text/css" href="../styles/split.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/dark-theme.css" />
 
   <script src="../scripts/loadEditor.js"></script>
-</head>
+  <script src="../scripts/convert.js"></script>
 
+</head>
+<script>
+$(".split right").on('scroll', function() {
+   var st = $(this).scrollTop();
+   var wh = $(document).height();
+
+// st : wh = X : 100
+// x = (st*100)/wh
+
+var perc = (st*100)/wh
+
+// Your percentage is contained in perc variable
+
+console.log('The percentage is '+perc);
+
+});</script>
 <body>
-  <div class="window">
+  <!-- <div class="window">
     <div class="window-content">
       <div class="pane-group">
         <div class="pane">
@@ -18,23 +36,16 @@
         </div>
         <div class="pane">
           <div id="render" style="height: 100%; width: 100%"></div>
-          <h1>VIEW</h1>
-          We are using node <script>
-            document.write(process.versions.node)
-          </script>,
-          Chrome <script>
-            document.write(process.versions.chrome)
-          </script>,
-          and Electron <script>
-            document.write(process.versions.electron)
-          </script>.
-          ss
         </div>
       </div>
-
     </div>
+  </div>-->
+  <div class="split left">
+      <div id="container" style="height: 100%; width: 100%"></div>
   </div>
 
+  <div class="split right">
+      <div id="render" style="height: 100%; width: 100%"></div>
 </body>
 
 </html>

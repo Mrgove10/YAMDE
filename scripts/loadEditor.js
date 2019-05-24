@@ -41,9 +41,11 @@ amdRequire(['vs/editor/editor.main'], function () {
 	editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
     	console.log('SAVE pressed!');
 	});
-	//This is executed everytime a key is pressed
-	editor.onKeyDown(function() { 
-		document.getElementById('render').innerHTML = editor.getValue()
-		console.log("keyDown"); 
-	}); 	
+	//This is executed everytime teh content of teh editor changes
+	editor.onDidChangeModelContent(() => {
+		var rawtxt = editor.getValue();
+		console.log(rawtxt); 
+		convert(rawtxt);
+		console.log("Total lines = " +editor.getModel().getLineCount());
+	 });
 });	
