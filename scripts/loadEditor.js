@@ -1,5 +1,5 @@
 const path = require('path');
-const amdLoader = require('../node_modules/monaco-editor/min/vs/loader.js');
+const amdLoader = require('monaco-editor/min/vs/loader');
 const amdRequire = amdLoader.require;
 const amdDefine = amdLoader.require.define;
 
@@ -18,11 +18,6 @@ self.module = undefined;
 amdRequire(['vs/editor/editor.main'], function () {
 	var editor = monaco.editor.create(document.getElementById('container'), {
 		//https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html
-		/*value: [
-			'function x() {',
-			'\tconsole.log("Hello world!");',
-			'}'
-		].join('\n'),*/
 		language: 'markdown',
 		automaticLayout:true,
 		lineNumbers: "on",
@@ -41,11 +36,11 @@ amdRequire(['vs/editor/editor.main'], function () {
 	editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
     	console.log('SAVE pressed!');
 	});
-	//This is executed everytime teh content of teh editor changes
+	//This is executed everytime the content of the editor changes
 	editor.onDidChangeModelContent(() => {
 		var rawtxt = editor.getValue();
-		console.log(rawtxt); 
+		//console.log(rawtxt); 
 		convert(rawtxt);
-		console.log("Total lines = " +editor.getModel().getLineCount());
+		//console.log("Total lines = " +editor.getModel().getLineCount());
 	 });
 });	

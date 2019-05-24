@@ -1,9 +1,6 @@
-var showdown = require('showdown');
-var converter = new showdown.Converter();
-
+var md = require('markdown-it')();
 
 function convert(markdownString) {
-    var html = converter.makeHtml(markdownString);
-    document.getElementById('render').innerHTML = html
-    console.log(html);
+    var result = md.render(markdownString);
+    document.getElementById('render').innerHTML = result;
 }

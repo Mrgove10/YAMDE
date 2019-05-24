@@ -1,14 +1,27 @@
-const { app, BrowserWindow, Menu, MenuItem } = require('electron');
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  MenuItem
+} = require('electron');
 require('electron-reload')(__dirname);
-
+const filemanager= require('./scripts/fileManagement.js');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
-function createWindow () {
+
+function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 728,
+    // this is important since currently there is no support for scrollable menus
+    minWidth: 600, // set a min width!
+    minHeight: 300, // and a min height!
+    // Remove the window frame from windows applications
+    //frame: false,
+    // Hide the titlebar from MacOS applications while keeping the stop lights
+    // titleBarStyle: 'hidden', // or 'customButtonsOnHover',
     webPreferences: {
       nodeIntegration: true
     }
@@ -28,13 +41,18 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
   })
-  
+
+  //TODO: change this
   const customMenu = new Menu()
   customMenu.append(new MenuItem({
-    label: 'Print',
-    click: () => { console.log('time to print stuff') }
+    label: 'save',
+    accelerator: process.platform === 'darwin' ? 'Cmd+S' : 'Ctrl+S',
+    click: () => {
+      filemanager.saveFile();
+      console.log('time to save')
+    }
   }))
-  //Menu.setApplicationMenu(customMenu); //change this for your custome menu
+  Menu.setApplicationMenu(customMenu); //change this for your custome menu
 }
 
 // This method will be called when Electron has finished

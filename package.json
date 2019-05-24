@@ -1,11 +1,12 @@
 {
-  "name": "yamde",
+  "name": "YAMDE",
   "version": "1.0.0",
   "description": "Yet Another MarkDown Editor",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pack": "electron-builder --dir",
+    "build": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -19,10 +20,20 @@
   "homepage": "https://github.com/Mrgove10/YAMDE#readme",
   "devDependencies": {
     "electron": "^5.0.1",
-    "electron-reload": "^1.4.0"
+    "electron-reload": "^1.4.0",
+    "electron-builder": "^20.40.2"
   },
   "dependencies": {
+    "about-window": "^1.13.0",
+    "custom-electron-titlebar": "^3.0.8",
+    "markdown-it": "^8.4.2",
     "monaco-editor": "^0.17.0",
     "showdown": "^1.9.0"
+  },
+  "build": {
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
   }
 }
